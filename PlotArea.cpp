@@ -149,19 +149,19 @@ void PlotArea::drawJAirfoil(QPainter *painter)
     pen.setStyle(Qt::SolidLine);
     for (double f = 0.; f < 2*M_PI; )
     {
-        std::complex<double> z(cos(f), sin(f)); //Circ
+        std::complex<double> z(cos(f), sin(f));    //Circ
         z *= R;
         z += c;
         QPoint cP1(real(z)*k, imag(z)*k);
-        std::complex<double> w = z + a*a/z;     //Airfoil
+        std::complex<double> w = 0.5*(z + a*a/z);  //Airfoil
         QPoint aP1(real(w)*k, imag(w)*k);
 
         f += 0.01;
-        z.real(cos(f)); z.imag(sin(f));         //Circ
+        z.real(cos(f)); z.imag(sin(f));           //Circ
         z *= R;
         z += c;
         QPoint cP2(real(z)*k, imag(z)*k);
-        w = z + a*a/z;                          //Airfoil
+        w = 0.5*(z + a*a/z);                      //Airfoil
         QPoint aP2(real(w)*k, imag(w)*k);
 
         //Circumference
